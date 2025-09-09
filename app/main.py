@@ -10,18 +10,18 @@ class Person:
 def create_person_list(people: list) -> list:
     Person.people.clear()
 
-    _ = [Person(person_dict["name"],
-                person_dict["age"]) for person_dict in people]
+    instances = [Person(person["name"],
+                 person["age"]) for person in people]
 
-    for person_dict in people:
-        person_obj = Person.people[person_dict["name"]]
+    for person in people:
+        instances = Person.people[person["name"]]
 
-        wife_name = person_dict.get("wife")
+        wife_name = person.get("wife")
         if wife_name:
-            person_obj.wife = Person.people[wife_name]
+            instances.wife = Person.people[wife_name]
 
-        husband_name = person_dict.get("husband")
+        husband_name = person.get("husband")
         if husband_name:
-            person_obj.husband = Person.people[husband_name]
+            instances.husband = Person.people[husband_name]
 
     return [Person.people[person_dict["name"]] for person_dict in people]
